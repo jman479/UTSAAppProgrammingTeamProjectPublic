@@ -1,5 +1,6 @@
 // Login.java
 
 
-// Variables: date, season
-// Methods: New_User, Existing_User
+// What should be in this file:
+// Variables: username, password
+// Methods: New_User, Exisiting_User
