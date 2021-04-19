@@ -1,4 +1,4 @@
-/*
+/* Main.java
  * Our term project is centered around making an app to help catalog the plants you would like to grow
  * and offer tips on how to take care of such plants.
  * 
@@ -11,3 +11,6 @@
  * UTSA CS 3443.002 - Application Term Project
  * Spring 2021
  */
+
+// We need to put the "date" and "season" variables in here
+// Along with the "Login", "New_Field", "Existing_Field", and "Main" methods
