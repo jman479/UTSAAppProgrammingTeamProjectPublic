@@ -12,5 +12,6 @@
  * Spring 2021
  */
 
-// We need to put the "date" and "season" variables in here
-// Along with the "Login", "New_Field", "Existing_Field", and "Main" methods
+// What should be in this file:
+// Variables: date, season
+// Methods: Login, New_Field, Existing_Field, & Main
