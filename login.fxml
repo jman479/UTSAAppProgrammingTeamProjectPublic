@@ -45,6 +45,6 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label fx:id="messageText" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="136.0" prefHeight="17.0" prefWidth="216.0" textAlignment="CENTER" />
+      <Label fx:id="messageText" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="136.0" prefHeight="17.0" prefWidth="371.0" textAlignment="CENTER" />
    </children>
 </Pane>
