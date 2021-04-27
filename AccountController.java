@@ -1,12 +1,11 @@
 package sample;
 
 /**
- * AccountController is the backbone of the Registration page and will be used to allow
- * a new user to input all the necessary information to create a new account. If the user
- * fills out all the fields, then their information will be stored in the corresponding
- * csv's and the user will be directed to the new field screen. But, if the user did
- * not fill out all the fields, they will be prompted to do so and then press the button again.
- * This page also includes an exit button if the user wants to close the program at any time
+ * AccountController is the backbone of the new user page and will be used to either
+ * get all the users information and checks that the username is not already in use
+ * and that the passwords match. If everything is filled in correctly then the information
+ * is put into the according csv's and the user is directed to the new field page. The page also
+ * features a button to allow the user to exit the application at any time.
  *
  * Author: Michael Ginsberg (sfi208)
  */
@@ -21,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.*;
 
 public class AccountController
 {
@@ -50,8 +51,7 @@ public class AccountController
      * then the program will prompt the user to fill in the missing fields
      * @param event - mouse click
      */
-    public void createAccountButtonAction(ActionEvent event)
-    {
+    public void createAccountButtonAction(ActionEvent event) throws IOException {
         if (!fNameTF.getText().isBlank() && !lNameTF.getText().isBlank() && !emailTF.getText().isBlank() && !usernameTF.getText().isBlank() && !passphrasePF.getText().isBlank() && !cPassphrasePF.getText().isBlank())
         {
             inputUser();
@@ -77,17 +77,83 @@ public class AccountController
      * inputUser is called by createAccountButtonAction() and will be used to
      * store all of the users information into various csv's to be used in
      * different portions of the application later on. Also once all the information
-     * is stored, the fucntion will send the new user to the new field screen so
+     * is stored, the function will send the new user to the new field screen so
      * they may continue their account creation.
      */
-    public void inputUser()
+    public void inputUser() throws IOException
     {
-        createFieldPage();
-        Stage stage = (Stage) cAccountB.getScene().getWindow();
-        stage.close();
-        // need to add code to input user info into csv
+        String user = "";
+        String line = "";
+        String filenameI = "user_information.csv";
+        String filenameA = "user_accounts.csv";
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(filenameI));
+
+            while ((line = br.readLine()) != null)
+            {
+                String[] accounts = line.split(",");
+
+                if (usernameTF.getText().equals(accounts[3]))
+                {
+                    messageLabel.setText("Username already in use, please select another");
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (passphrasePF.getText().equals(cPassphrasePF.getText()))
+        {
+            FileWriter csvWriter = new FileWriter(filenameI, true);
+            csvWriter.append("\n");
+            csvWriter.append(fNameTF.getText());
+            csvWriter.append(",");
+            csvWriter.append(lNameTF.getText());
+            csvWriter.append(",");
+            csvWriter.append(emailTF.getText());
+            csvWriter.append(",");
+            csvWriter.append(usernameTF.getText());
+            csvWriter.append(",");
+            csvWriter.append(passphrasePF.getText());
+            csvWriter.flush();
+            csvWriter.close();
+
+            FileWriter accountWriter = new FileWriter(filenameA, true);
+            accountWriter.append("\n");
+            accountWriter.append(usernameTF.getText());
+            accountWriter.append(",");
+            accountWriter.append(passphrasePF.getText());
+            accountWriter.flush();
+            accountWriter.close();
+
+            BufferedWriter newFile = new BufferedWriter((new FileWriter(usernameTF.getText() + ".csv")));
+            newFile.append("Field Name");
+            newFile.append(",");
+            newFile.append("Location");
+            newFile.append(",");
+            newFile.append("Date");
+            newFile.append(",");
+            newFile.append("Crops:");
+            newFile.flush();
+            newFile.close();
+
+            createFieldPage();
+            Stage stage = (Stage) cAccountB.getScene().getWindow();
+            stage.close();
+        }
+        else
+        {
+            messageLabel.setText("Passphrases do not match, please try again");
+        }
     }
 
+    /**
+     * createFieldPage function will create a new stage and link the fxml
+     * to the newField.fxml. It will also open the new stage in a new window.
+     */
     public void createFieldPage()
     {
         try{
