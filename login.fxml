@@ -6,22 +6,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<Pane fx:id="loginP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DAF7A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="loginP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DAF7A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
-      <Button fx:id="loginB" layoutX="103.0" layoutY="307.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #FFCF5A;" text="LOG IN ">
+      <Button fx:id="loginB" layoutX="104.0" layoutY="270.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #FFCF5A;" text="LOG IN ">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <PasswordField fx:id="passphrasePF" alignment="CENTER" layoutX="76.0" layoutY="239.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
-      <Label layoutX="103.0" layoutY="168.0" prefHeight="32.0" prefWidth="62.0" text="Log In:" textAlignment="CENTER">
+      <Label layoutX="127.0" layoutY="168.0" prefHeight="32.0" prefWidth="62.0" text="Log In" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="100.0" layoutY="264.0" mnemonicParsing="false" style="-fx-background-color: #FFCF5A;" text="Forgot Password" />
       <TextField fx:id="usernameTF" alignment="CENTER" layoutX="76.0" layoutY="212.0" prefHeight="25.0" prefWidth="160.0" promptText="Username" />
       <Label layoutX="152.0" layoutY="23.0" prefHeight="70.0" prefWidth="291.0" text="Plants for Life" textAlignment="CENTER">
          <font>
@@ -43,10 +41,10 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Text fx:id="messageLabel" fill="RED" layoutX="257.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.0" />
       <Button fx:id="exitB" layoutX="482.0" layoutY="346.0" mnemonicParsing="false" onAction="#exitButtonAction" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #FFCF5A;" text="Exit">
          <font>
             <Font size="18.0" />
          </font></Button>
+      <Label fx:id="messageText" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="136.0" prefHeight="17.0" prefWidth="216.0" textAlignment="CENTER" />
    </children>
 </Pane>
