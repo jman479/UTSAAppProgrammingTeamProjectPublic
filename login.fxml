@@ -36,7 +36,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="newAccountB" layoutX="356.0" layoutY="220.0" mnemonicParsing="false" style="-fx-background-color: #FFCF5A;" text="Create an Account ">
+      <Button fx:id="newAccountB" layoutX="356.0" layoutY="220.0" mnemonicParsing="false" onAction="#createAccountButtonAction" style="-fx-background-color: #FFCF5A;" text="Create an Account ">
          <font>
             <Font size="18.0" />
          </font>
