@@ -1,5 +1,13 @@
 package sample;
 
+/**
+ * newFieldController is the backbone of the new field page and will be used to get the
+ * background information on the field and then will take the user to the overview page.
+ * The page also features a button to allow the user to exit the application at any time.
+ *
+ * Author: Michael Ginsberg (sfi208)
+ */
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,11 +34,6 @@ public class newFieldController
     private TextField dateTF;
     @FXML
     private Label messageLabel;
-
-    public newFieldController (String filename)
-    {
-        String filenameU = filename;
-    }
 
     /**
      * createFieldButtonAction - Takes in the users mouse click and will check if all
@@ -61,8 +64,33 @@ public class newFieldController
         stage.close();
     }
 
+    /**
+     * Inputfield is used to get the users input into their account csv
+     * and then takes the user to the overview page of the application.
+     * @throws IOException
+     */
     public void inputField() throws IOException {
         String filenameU = "";
+        String filenameA = "user_accounts.csv";
+        String line = "";
+        String user = "";
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(filenameA));
+
+            while ((line = br.readLine()) != null)
+            {
+                String[] accounts = line.split(",");
+
+                    user = accounts[0];
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        filenameU = user + ".csv";
 
         FileWriter fieldWriter = new FileWriter(filenameU, true);
         fieldWriter.append("\n");
