@@ -24,10 +24,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.Buffer;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginController
 {
@@ -97,11 +93,7 @@ public class LoginController
     {
         int i;
         boolean isUser = false;
-        String[] users = new String[10];
-        users[0] = "sfi208";
-        users[1] = "Password1";
-
-        /*String line = "";
+        String line = "";
         String filename = "user_accounts.csv";
 
 
@@ -111,49 +103,30 @@ public class LoginController
             while ((line = br.readLine()) != null)
             {
                 String[] accounts = line.split(",");
-                System.out.println("ID Number: " + accounts[0] + "Username: " + accounts[1] + "Passphrase: " + accounts[2]);
 
-                if (usernameTF.getText().equals(accounts[1]))
+                if (usernameTF.getText().equals(accounts[0]))
                 {
                     isUser = true;
-                    if (passphrasePF.getText().equals((accounts[2])))
+                    if (passphrasePF.getText().equals((accounts[1])))
                     {
-                        messageText.setText("Login Successful");
+                        fieldOverviewPage();
+                        Stage stage = (Stage) newAccountB.getScene().getWindow();
+                        stage.close();
                     }
-                    else
-                    {
-                        messageText.setText("Incorrect Passphrase");
-                    }
-                    break;
                 }
+            }
+            if (isUser == true)
+            {
+                messageText.setText("Incorrect Passphrase");
+            }
+            else
+            {
+                messageText.setText("Username not found, try again or create a new account");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-
-        for (i = 0; i <= users.length; i++)
-        {
-
-            if (usernameTF.getText().equals(users[i]))
-            {
-                isUser = true;
-                if (passphrasePF.getText().equals(users[i + 1])) {
-                    //messageText.setText("Login Successful");
-                    fieldOverviewPage();
-                    Stage stage = (Stage) loginB.getScene().getWindow();
-                    stage.close();
-                }
-                else
-                {
-                    messageText.setText("Incorrect Username or Passphrase");
-                }
-            }
-        }
-        if (isUser == true)
-        {
-            messageText.setText("Incorrect Username or Passphrase");
         }
     }
 
