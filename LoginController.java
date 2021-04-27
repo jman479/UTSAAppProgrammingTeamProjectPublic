@@ -1,5 +1,14 @@
 package sample;
 
+/**
+ * LoginController is the backbone of the login page and will be used to either
+ * validate login credentials and advance the user to their field or the page
+ * will be used to direct new users to the create an account page. The page also
+ * features a button to allow the user to exit the application at any time.
+ *
+ * Author: Michael Ginsberg (sfi208)
+ */
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,8 +39,13 @@ public class LoginController
     @FXML
     private PasswordField passphrasePF;
 
-
-
+    /**
+     * loginButtonAction - Takes in the users mouse click and will check if all
+     * text fields are filled in. If they are then the program will call another
+     * function to validate the login request, but if both fields are not filled in
+     * then the program will prompt the user to fill in the missing fields
+     * @param event - mouse click
+     */
     public void loginButtonAction(ActionEvent event)
     {
         if (!usernameTF.getText().isBlank() && !passphrasePF.getText().isBlank())
@@ -47,7 +61,7 @@ public class LoginController
     /**
      * exitButtonAction will cause the window to close if the user
      * presses the exit button
-     * @param event - takes in the button press
+     * @param event - mouse click
      */
     public void exitButtonAction(ActionEvent event)
     {
@@ -55,6 +69,13 @@ public class LoginController
         stage.close();
     }
 
+    /**
+     * validateLogin is called by loginButtonAction() to check the users
+     * credentials against all known users in the user_accounts csv. The
+     * function will do checks on both the username and passphrase and if they
+     * are both correct, will send the user to their overview page. If the user enters
+     * a wrong username or passphrase the function will prompt the user to try again
+     */
     public void validateLogin()
     {
         int i;
