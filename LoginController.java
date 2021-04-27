@@ -8,6 +8,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginController
 {
     @FXML
@@ -15,7 +24,7 @@ public class LoginController
     @FXML
     private Button loginB;
     @FXML
-    private Label messageLabel;
+    private Label messageText;
     @FXML
     private TextField usernameTF;
     @FXML
@@ -31,7 +40,7 @@ public class LoginController
         }
         else
         {
-            messageLabel.setText("Please enter username and passphrase");
+            messageText.setText("Please enter username and passphrase");
         }
     }
 
@@ -54,28 +63,57 @@ public class LoginController
         users[0] = "sfi208";
         users[1] = "Password1";
 
+        /*String line = "";
+        String filename = "user_accounts.csv";
+
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+
+            while ((line = br.readLine()) != null)
+            {
+                String[] accounts = line.split(",");
+                System.out.println("ID Number: " + accounts[0] + "Username: " + accounts[1] + "Passphrase: " + accounts[2]);
+
+                if (usernameTF.getText().equals(accounts[1]))
+                {
+                    isUser = true;
+                    if (passphrasePF.getText().equals((accounts[2])))
+                    {
+                        messageText.setText("Login Successful");
+                    }
+                    else
+                    {
+                        messageText.setText("Incorrect Passphrase");
+                    }
+                    break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
         for (i = 0; i <= users.length; i++)
         {
+
             if (usernameTF.getText().equals(users[i]))
             {
                 isUser = true;
                 if (passphrasePF.getText().equals(users[i + 1]))
                 {
-                    messageLabel.setText("Login Successful");
+                    messageText.setText("Login Successful");
                 }
                 else
                 {
-                    messageLabel.setText("Incorrect Passphrase");
+                    messageText.setText("Incorrect Username or Passphrase");
                 }
             }
         }
-
-        if (!isUser)
+        if (isUser == true)
         {
-            messageLabel.setText("User not found, create a new account");
+            messageText.setText("Incorrect Username or Passphrase");
         }
-
-
     }
-
 }
