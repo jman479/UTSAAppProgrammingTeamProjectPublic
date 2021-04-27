@@ -13,6 +13,9 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -79,6 +82,24 @@ public class AccountController
      */
     public void inputUser()
     {
+        createFieldPage();
+        Stage stage = (Stage) cAccountB.getScene().getWindow();
+        stage.close();
         // need to add code to input user info into csv
+    }
+
+    public void createFieldPage()
+    {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("newField.fxml"));
+            Stage newField = new Stage();
+            newField.setTitle("Plants for Life");
+            newField.setScene(new Scene(root, 600, 400));
+            newField.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }
